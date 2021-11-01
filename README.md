@@ -11,3 +11,10 @@ League of Legends Champions Open Data available as .json and .csv
 - Last modification: 1/11/2021
 - Game: League of Legends
 - Game URL: https://www.leagueoflegends.com/
+
+| Attribute | Description |
+|Name|Name of the champion|
+|Title|Title of the said champion|
+|Lore|Lore related to the champion|
+|Hp, Armor, Magic Resist, Attack Range, Attack Damage, Attack Speed|In-game stats of the champion|
+|Abilities|The list of the 4 abilities that the champion has|
