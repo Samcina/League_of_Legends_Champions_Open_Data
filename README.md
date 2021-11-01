@@ -13,6 +13,7 @@ League of Legends Champions Open Data available as .json and .csv
 - Game URL: https://www.leagueoflegends.com/
 
 | Attribute | Description |
+| ----------- | ----------- |
 |Name|Name of the champion|
 |Title|Title of the said champion|
 |Lore|Lore related to the champion|
