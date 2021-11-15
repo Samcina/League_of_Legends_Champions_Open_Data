@@ -1,0 +1,163 @@
+{
+    "$id": "https://github.com/Samcina/League_of_Legends_Champions_Open_Data/blob/main/LoLChampions.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "default": [],
+    "description": "List of all the champions in the game and their relevant info.",
+    "title": "League of Legends Open Data",
+    "type": "array",
+    "additionalItems": true,
+    "items": {
+        "$id": "#/items",
+        "default": {},
+        "description": "Instance of a champion with its relevant info.",
+        "required": [
+            "champname",
+            "title",
+            "lore",
+            "hp",
+            "armor",
+            "magicresist",
+            "attackrange",
+            "attackdamage",
+            "attackspeed",
+            "abilities"
+        ],
+        "title": "Champion",
+        "type": "object",
+        "properties": {
+            "champname": {
+                "$id": "#/items/properties/champname",
+                "default": "",
+                "description": "Name of the champion.",
+                "examples": [
+                    "Aatrox"
+                ],
+                "title": "Champion name",
+                "type": "string"
+            },
+            "title": {
+                "$id": "#/items/properties/title",
+                "default": "",
+                "description": "Title of the champion.",
+                "examples": [
+                    "the Darkin Blade"
+                ],
+                "title": "Title",
+                "type": "string"
+            },
+            "lore": {
+                "$id": "#/items/properties/lore",
+                "default": "",
+                "description": "Lore related to the champion.",
+                "examples": [
+                    "Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find freedom once more, corrupting and transforming those foolish enough to try and wield the magical weapon that contained his essence. Now, with stolen flesh, he walks Runeterra in a brutal approximation of his previous form, seeking an apocalyptic and long overdue vengeance."
+                ],
+                "title": "Lore",
+                "type": "string"
+            },
+            "hp": {
+                "$id": "#/items/properties/hp",
+                "default": 0,
+                "description": "In-game health of the champion.",
+                "examples": [
+                    580
+                ],
+                "title": "Health",
+                "type": "integer"
+            },
+            "armor": {
+                "$id": "#/items/properties/armor",
+                "default": 0,
+                "description": "In-game armor of the champion.",
+                "examples": [
+                    38
+                ],
+                "title": "Armor",
+                "type": "integer"
+            },
+            "magicresist": {
+                "$id": "#/items/properties/magicresist",
+                "default": 0,
+                "description": "In-game magic resist of the champion.",
+                "examples": [
+                    32
+                ],
+                "title": "Magic resist",
+                "type": "integer"
+            },
+            "attackrange": {
+                "$id": "#/items/properties/attackrange",
+                "default": 0,
+                "description": "In-game attack range of the champion.",
+                "examples": [
+                    175
+                ],
+                "title": "Attack range",
+                "type": "integer"
+            },
+            "attackdamage": {
+                "$id": "#/items/properties/attackdamage",
+                "default": 0,
+                "description": "In-game attack damage of the champion.",
+                "examples": [
+                    60
+                ],
+                "title": "Attack damage",
+                "type": "integer"
+            },
+            "attackspeed": {
+                "$id": "#/items/properties/attackspeed",
+                "default": 0.0,
+                "description": "In-game attack speed of the champion.",
+                "examples": [
+                    0.651
+                ],
+                "title": "Attack speed",
+                "type": "number"
+            },
+            "abilities": {
+                "$id": "#/items/properties/abilities",
+                "default": [],
+                "description": "An array comprising of the champion's abilities",
+                "title": "Abilities",
+                "type": "array",
+                "additionalItems": true,
+                "items": {
+                    "$id": "#/items/properties/abilities/items",
+                    "default": {},
+                    "description": "Instance of a champion's ability.",
+                    "required": [
+                        "abilityname",
+                        "description"
+                    ],
+                    "title": "Ability",
+                    "type": "object",
+                    "properties": {
+                        "abilityname": {
+                            "$id": "#/items/properties/abilities/items/properties/abilityname",
+                            "default": "",
+                            "description": "The name of the champion's ability.",
+                            "examples": [
+                                "The Darkin Blade"
+                            ],
+                            "title": "Ability name",
+                            "type": "string"
+                        },
+                        "description": {
+                            "$id": "#/items/properties/abilities/items/properties/description",
+                            "default": "",
+                            "description": "Description of a champion's ability.",
+                            "examples": [
+                                "Aatrox slams his greatsword down, dealing physical damage. He can swing three times, each with a different area of effect."
+                            ],
+                            "title": "Ability description",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            }
+        },
+        "additionalProperties": true
+    }
+}
