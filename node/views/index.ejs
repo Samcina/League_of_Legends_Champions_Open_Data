@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="League of Legends Champions Open Data">
+  <meta name="keywords" content="league of legends, champions">
+  <meta name="author" content="Luka Samac">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Index</title>
+
+  <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  
+
+  <style>
+    .flex-container {
+      /* We first create a flex layout context */
+      display: flex;
+
+      /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+      flex-flow: row wrap;
+
+      /* Then we define how is distributed the remaining space */
+      justify-content: flex-start;
+      gap: 5px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .flex-item {
+      background: rgb(4, 47, 59);
+      padding: 0px;
+      width: 100px;
+      height: 130px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 5px;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 15px;
+      text-align: center;
+    }
+
+
+    .title {
+      position: relative;
+      text-transform: uppercase;
+      font-size: 60px;
+      color: black;
+      font-weight: 900;
+      font-family: 'Catamaran', sans-serif;
+      font-style: italic;
+      text-align: center;
+    }
+
+
+
+
+    h1 {
+      font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+      font-size: 80px;
+      padding: 20px 200px;
+      text-align: center;
+      text-transform: uppercase;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1.retroshadow {
+      color: #2c2c2c;
+      letter-spacing: .05em;
+      text-shadow:
+        4px 4px 0px #d5d5d5,
+        7px 7px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .list {
+      margin: 0 40px auto;
+      width: 800px;
+    }
+
+    .list- li,
+    .list a {
+      float: left;
+      height: 35px;
+      line-height: 35px;
+      position: relative;
+      font-size: 15px;
+      margin-bottom: 12px;
+      margin-right: 100px;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .list a {
+      padding: 0 60px 0 12px;
+      background: #0089e0;
+      color: #fff;
+      text-decoration: none;
+      -moz-border-radius-bottomright: 4px;
+      -webkit-border-bottom-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      -moz-border-radius-topright: 4px;
+      -webkit-border-top-right-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .list a:before {
+      content: "";
+      float: left;
+      position: absolute;
+      top: 0;
+      left: -12px;
+      width: 0;
+      height: 0;
+      border-color: transparent #0089e0 transparent transparent;
+      border-style: solid;
+      border-width: 18px 12px 18px 0;
+    }
+
+    .list a:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 0;
+      float: left;
+      width: 6px;
+      height: 6px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      background: #fff;
+      -moz-box-shadow: -1px -1px 2px #004977;
+      -webkit-box-shadow: -1px -1px 2px #004977;
+      box-shadow: -1px -1px 2px #004977;
+    }
+
+    .list a:hover {
+      background: #555;
+    }
+
+    .list a:hover:before {
+      border-color: transparent #555 transparent transparent;
+    }
+
+    .styled-table {
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.9em;
+      font-family: sans-serif;
+      min-width: 400px;
+      max-width: 800px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      margin-left: 50px;
+      margin-top: 100px;
+    }
+
+    .styled-table thead tr {
+      background-color: #0089e0;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+      border-bottom: 2px solid #0089e0;
+    }
+
+    .styled-table tbody tr:hover {
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="page" style="margin:0 0 0 0; padding: 0; ">
+    <nav class="page__menu menu">
+      <ul class="menu__list r-list">
+        <li class=" menu__group"><a href="https://www.riotgames.com/en
+          class=" menu__link r-link text-underlined"><img src="../images/logo.png" alt="Logo"
+              style="display: block; margin-top:18px; width:100px; margin-left:10px; margin-right: 15px;"></a></li>
+        <li class="menu__group"><a href="/" class="menu__link r-link text-underlined">Home</a></li>
+        <li class="menu__group"><a href="/datatable" class="menu__link r-link text-underlined">Datatable</a></li>
+        <li class="menu__group"><a href="../data/LoLChampions.json" class=" menu__link r-link" download="champs.json"
+            style="padding:0;">
+            <img src="../images/json.png" alt="json"
+              style="display: block; margin-top:16px; width:40px; margin-left:40px; margin-right: 15px; margin-bottom: 5px;"></a>
+        </li>
+        <li class="menu__group"><a href="../data/LoLChampions.csv" class=" menu__link r-link" download="champs.csv"
+            style="padding:0;">
+            <img src="../images/csv.png" alt="csv"
+              style="display: block; margin-top:16px; width:40px; margin-left:40px; margin-right: 15px; margin-bottom: 5px;"></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+
+  <h1 class="retroshadow">
+    League of Legends Open Data
+  </h1>
+
+  <div class="list">
+    <ul style="list-style-type:none;">
+      <div style="display: flex; width: 800px;">
+        <li><a>Title: League of Legends Champions Open Data</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Keywords: league of legends, champions</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Creator: Luka Samac</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Language: English</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>License: Creative Commons Zero v1.0 Universal</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Version: 2.0</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Creation date: 1/11/2021</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Last modification: 16/11/2021</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a>Game: League of Legends</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a href="https://www.leagueoflegends.com/">Game URL: https://www.leagueoflegends.com/</a></li>
+      </div>
+      <div style="display: flex; width: 800px;">
+        <li><a href="https://github.com/Samcina/League_of_Legends_Champions_Open_Data">GitHub URL:
+            https://github.com/Samcina/League_of_Legends_Champions_Open_Data</a></li>
+      </div>
+    </ul>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th style="width: 200px;">Attribute</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>Name of the champion</td>
+      </tr>
+      <tr>
+        <td>Title</td>
+        <td>Title of the said champion</td>
+      </tr>
+      <tr>
+        <td>Lore</td>
+        <td>Lore related to the champion</td>
+      </tr>
+      <tr>
+        <td>Hp, Armor, Magic Resist, Attack Range, Attack Damage, Attack Speed</td>
+        <td>In-game stats of the champion</td>
+      </tr>
+      <tr>
+        <td>Abilities</td>
+        <td>The list of the 4 abilities that the champion has</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <h1 class="retroshadow">
+    League of Legends Champions
+  </h1>
+
+
+  <ul class="flex-container">
+
+
+    <% for (let champ of champs) { %>
+      <li class="flex-item">
+        <img src="http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/<%= champ.champname %>.png"
+          style="height: 100px;width: 100px;" />
+        <p style="margin-top: 0;">
+          <%= champ.champname %>
+        </p>
+      </li>
+      <% } %>
+
+  </ul>
+
+
+
+</body>

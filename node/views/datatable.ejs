@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="League of Legends Champions Open Data">
+    <meta name="keywords" content="league of legends, champions">
+    <meta name="author" content="Luka Samac">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Datatable</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+    <script src="https://unpkg.com/export-from-json/dist/umd/index.min.js"></script>
+
+
+    <style>
+        .paginate_button {
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            color: #000000;
+            padding: 0.5em;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 4px 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid #ccc;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+        }
+
+        input:focus {
+            border: 3px solid #555;
+        }
+
+        tfoot {
+            display: table-header-group;
+        }
+    </style>
+
+
+
+</head>
+
+
+<body>
+
+    <div class="page" style="margin:0 0 0 0; padding: 0;">
+        <nav class="page__menu menu">
+            <ul class="menu__list r-list">
+                <li class=" menu__group"><a href="https://www.riotgames.com/en
+              class=" menu__link r-link text-underlined"><img src="../images/logo.png" alt="Logo"
+                            style="display: block; margin-top:18px; width:100px; margin-left:10px; margin-right: 15px;"></a>
+                </li>
+                <li class="menu__group"><a href="/" class="menu__link r-link text-underlined">Home</a></li>
+                <li class="menu__group"><a href="/datatable" class="menu__link r-link text-underlined">Datatable</a>
+                </li>
+                <li class="menu__group"><a class="menu__link r-link" style="padding:0;" onclick="downloadJSON()" href="#">
+                        <img src="../images/json.png" alt="json"
+                            style="display: block; margin-top:16px; width:40px; margin-left:40px; margin-right: 15px; margin-bottom: 5px;"></a>
+                </li>
+                <li class="menu__group"><a class="menu__link r-link" style="padding:0;" onclick='downloadCSV({ filename: "champs.csv" })'  href="#">
+                        <img src="../images/csv.png" alt="csv"
+                            style="display: block; margin-top:16px; width:40px; margin-left:40px; margin-right: 15px; margin-bottom: 5px;"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="margin-top: 20px;">
+
+        <table id="datatable" class="table table-striped table-bordered display"
+            style="width:100%; table-layout: fixed; word-wrap:break-word;margin:auto;">
+            <thead>
+                <tr>
+                    <th>Champion name</th>
+                    <th>Title</th>
+                    <th>Lore</th>
+                    <th>Health</th>
+                    <th>Armor</th>
+                    <th>Magic Resist</th>
+                    <th>Attack range</th>
+                    <th>Attack damage</th>
+                    <th>Attack speed</th>
+                    <th>Q name</th>
+                    <th>Q description</th>
+                    <th>W name</th>
+                    <th>W description</th>
+                    <th>E name</th>
+                    <th>E description</th>
+                    <th>R name</th>
+                    <th>R description</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Champion name</th>
+                    <th>Title</th>
+                    <th>Lore</th>
+                    <th>Health</th>
+                    <th>Armor</th>
+                    <th>Magic Resist</th>
+                    <th>Attack range</th>
+                    <th>Attack damage</th>
+                    <th>Attack speed</th>
+                    <th>Q name</th>
+                    <th>Q description</th>
+                    <th>W name</th>
+                    <th>W description</th>
+                    <th>E name</th>
+                    <th>E description</th>
+                    <th>R name</th>
+                    <th>R description</th>
+                </tr>
+            </tfoot>
+        </table>
+
+
+    </div>
+
+
+    <script>
+
+        let table;
+        $(document).ready(function () {
+
+            // Setup - add a text input to each footer cell
+            $('#datatable tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            console.log('ready');
+            fetch('/fetch').then(async function (response) {
+                const result = await response.json();
+                table = $('#datatable').DataTable({
+                    autoWidth: true,
+                    columnDefs: [
+                        { width: '100px', targets: 0 },
+                        { width: '100px', targets: 1 },
+                        { width: '400px', targets: 2 },
+                        { width: '75px', targets: 3 },
+                        { width: '75px', targets: 4 },
+                        { width: '75px', targets: 5 },
+                        { width: '75px', targets: 6 },
+                        { width: '75px', targets: 7 },
+                        { width: '75px', targets: 8 },
+                        { width: '125px', targets: 9 },
+                        { width: '300px', targets: 10 },
+                        { width: '125px', targets: 11 },
+                        { width: '300px', targets: 12 },
+                        { width: '125px', targets: 13 },
+                        { width: '300px', targets: 14 },
+                        { width: '125px', targets: 15 },
+                        { width: '300px', targets: 16 },
+                    ],
+                    data: result,
+                    "columns": [
+                        { "data": "champname" },
+                        { "data": "title" },
+                        { "data": "lore" },
+                        { "data": "hp" },
+                        { "data": "armor" },
+                        { "data": "magicresist" },
+                        { "data": "attackrange" },
+                        { "data": "attackdamage" },
+                        { "data": "attackspeed" },
+                        { "data": "abilities.0.abilityname" },
+                        { "data": "abilities.0.description" },
+                        { "data": "abilities.1.abilityname" },
+                        { "data": "abilities.1.description" },
+                        { "data": "abilities.2.abilityname" },
+                        { "data": "abilities.2.description" },
+                        { "data": "abilities.3.abilityname" },
+                        { "data": "abilities.3.description" },
+                    ],
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    "bLengthChange": true,
+                    "bInfo": true,
+                    initComplete: function () {
+                        // Apply the search
+                        this.api().columns().every(function () {
+                            var that = this;
+
+                            $('input', this.footer()).on('keyup change clear', function () {
+                                if (that.search() !== this.value) {
+                                    that
+                                        .search(this.value)
+                                        .draw();
+                                }
+                            });
+                        });
+                    }
+
+
+                });
+
+                $('#datatable tfoot tr').appendTo('#datatable thead');
+
+            });
+
+
+
+        });
+
+        function getData() {
+            var rows = table.rows({ search: 'applied' }).data();
+            let data = [];
+            for (let i = 0; i < rows.count(); i++) {
+                data.push(rows[i]);
+            }
+            return data;
+        }
+        function downloadJSON() {
+            let data = getData();
+            const fileName = 'champs';
+            const exportType = 'json';
+            window.exportFromJSON({ data, fileName, exportType })
+        }
+
+        function convertArrayOfObjectsToCSV(args) {
+            var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+            data = args.data || null;
+            if (data == null || !data.length) {
+                return null;
+            }
+
+            columnDelimiter = args.columnDelimiter || ',';
+            lineDelimiter = args.lineDelimiter || '\n';
+
+            keys = Object.keys(data[0]);
+
+            result = '';
+            result += keys.join(columnDelimiter);
+            result += lineDelimiter;
+
+            data.forEach(function (item) {
+                ctr = 0;
+                keys.forEach(function (key) {
+                    if (ctr > 0) result += columnDelimiter;
+
+                    result +=item[key];
+                    ctr++;
+                });
+                result += lineDelimiter;
+            });
+
+            return result;
+        }
+
+        function convertToCSV(args) {
+
+            let data = [];
+
+            args.forEach(function (item) {
+               
+                data.push({
+                    champname: '"' + item.champname  + '"',
+                    title: '"' + item.title + '"',
+                    lore: '"' + item.lore.replaceAll('"', '') + '"',
+                    hp: '"' + item.hp + '"',
+                    armor: '"' + item.armor + '"',
+                    magicResist: '"' + item.magicresist + '"',
+                    attackRange: '"' + item.attackrange + '"',
+                    attackDamage: '"' + item.attackdamage + '"',
+                    attackSpeed: '"' + item.attackspeed + '"',
+                    q_name: '"' + item.abilities[0].abilityname + '"',
+                    q_description: '"' + item.abilities[0].description + '"',
+                    w_name: '"' + item.abilities[1].abilityname + '"',
+                    w_description: '"' + item.abilities[1].description + '"',
+                    e_name: '"' + item.abilities[2].abilityname + '"',
+                    e_description: '"' + item.abilities[2].description + '"',
+                    r_name: '"' + item.abilities[3].abilityname + '"',
+                    r_description: '"' + item.abilities[3].description + '"',
+                })
+                
+            });
+            return data;
+
+        }
+
+
+        function downloadCSV(args) {
+            var data, filename, link;
+            var csv = convertArrayOfObjectsToCSV({
+                data: convertToCSV(getData())
+            });
+            if (csv == null) return;
+
+            filename = args.filename || 'export.csv';
+            var link = document.createElement('a');
+
+            var blob = new Blob(["\ufeff", csv]);
+            var url = URL.createObjectURL(blob);
+            link.href = url;
+
+            link.setAttribute('download', filename);
+            link.click();
+        }
+
+
+    </script>
+
+
+</body>
