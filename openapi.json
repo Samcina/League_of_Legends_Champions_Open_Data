@@ -1,0 +1,859 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a League of Legends Champions API. You can find more about League of Legends at [https://www.leagueoflegends.com/en-pl/](https://www.leagueoflegends.com/en-pl/).",
+    "version": "1.0.0",
+    "title": "League of Legends Champions API",
+    "contact": {
+      "email": "ls52477@fer.hr"
+    },
+    "license": {
+      "name": "Creative Commons Zero v1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "paths": {
+    "/champions": {
+      "get": {
+        "tags": [
+          "champion"
+        ],
+        "summary": "Get all the champion data",
+        "description": "Returns the whole collection",
+        "operationId": "getChampions",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Champion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "champion"
+        ],
+        "summary": "Add a new champion to the collection",
+        "description": "Adds a new champion to the collection",
+        "operationId": "addChampion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "champion",
+            "description": "Champion object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChampionInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Champion"
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "champion"
+        ],
+        "summary": "Update an existing champion",
+        "description": "Updates an existing champion in the collection",
+        "operationId": "updateChampion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "champion",
+            "description": "Champion object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChampionInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Champion not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "405": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      }
+    },
+    "/champions/{champId}": {
+      "get": {
+        "tags": [
+          "champion"
+        ],
+        "summary": "Get champion data by ID",
+        "description": "Returns a single collection resource",
+        "operationId": "getChampion",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "$ref": "#/definitions/Champion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Champion not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "champion"
+        ],
+        "summary": "Delete a champion by ID",
+        "description": "Deletes a single collection resource",
+        "operationId": "deleteChampion",
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Champion not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      }
+    },
+    "/champions/{champId}/abilities": {
+      "get": {
+        "tags": [
+          "ability"
+        ],
+        "summary": "Get ability data by champion ID",
+        "description": "Returns a single collection resource",
+        "operationId": "getAbilities",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Ability"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Abilities not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ability"
+        ],
+        "summary": "Add a new ability to the collection",
+        "description": "Adds a new ability to the collection",
+        "operationId": "addAbility",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "ability",
+            "description": "Ability object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AbilityInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "$ref": "#/definitions/AbilityInput"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Champion not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "405": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ability"
+        ],
+        "summary": "Update an existing ability",
+        "description": "Updates an existing ability in the collection",
+        "operationId": "updateAbility",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "ability",
+            "description": "Ability object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AbilityInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Ability not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "405": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      }
+    },
+    "/champions/{champId}/abilities/{abilityId}": {
+      "get": {
+        "tags": [
+          "ability"
+        ],
+        "summary": "Get ability data by ID",
+        "description": "Returns a single collection resource",
+        "operationId": "getAbility",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "abilityId",
+            "in": "path",
+            "description": "ID of ability to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "$ref": "#/definitions/Ability"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Ability not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ability"
+        ],
+        "summary": "Delete an ability by ID",
+        "description": "Deletes a single collection resource",
+        "operationId": "deleteAbility",
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "abilityId",
+            "in": "path",
+            "description": "ID of ability to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Ability not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      }
+    },
+    "/champions/{champId}/stats": {
+      "get": {
+        "tags": [
+          "champion"
+        ],
+        "summary": "Get champion stats data by ID",
+        "description": "Returns a single collection resource",
+        "operationId": "getChampionStats",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "champId",
+            "in": "path",
+            "description": "ID of champion to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 200
+                },
+                "status": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successful operation"
+                },
+                "response": {
+                  "$ref": "#/definitions/ChampionStats"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          },
+          "404": {
+            "description": "Champion not found",
+            "schema": {
+              "$ref": "#/definitions/WrapperNull"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Champion": {
+      "type": "object",
+      "required": [
+        "champid",
+        "champname",
+        "title",
+        "lore",
+        "hp",
+        "armor",
+        "magicresist",
+        "attackrange",
+        "attackdamage",
+        "attackspeed"
+      ],
+      "properties": {
+        "champid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "champname": {
+          "type": "string",
+          "example": "Ahri"
+        },
+        "title": {
+          "type": "string",
+          "example": "the Nine-Tailed Fox"
+        },
+        "lore": {
+          "type": "string"
+        },
+        "hp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "armor": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "magicresist": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackrange": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackdamage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackspeed": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "ChampionInput": {
+      "type": "object",
+      "required": [
+        "champid",
+        "champname",
+        "title",
+        "lore",
+        "hp",
+        "armor",
+        "magicresist",
+        "attackrange",
+        "attackdamage",
+        "attackspeed"
+      ],
+      "properties": {
+        "champname": {
+          "type": "string",
+          "example": "Ahri"
+        },
+        "title": {
+          "type": "string",
+          "example": "the Nine-Tailed Fox"
+        },
+        "lore": {
+          "type": "string"
+        },
+        "hp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "armor": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "magicresist": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackrange": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackdamage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackspeed": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "Ability": {
+      "type": "object",
+      "required": [
+        "champid",
+        "champname",
+        "title"
+      ],
+      "properties": {
+        "abilityid": {
+          "type": "string",
+          "example": "Orb of Deception"
+        },
+        "abilityname": {
+          "type": "string",
+          "example": "Orb of Deception"
+        },
+        "description": {
+          "type": "string"
+        },
+        "champid": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "AbilityInput": {
+      "type": "object",
+      "required": [
+        "champid",
+        "champname",
+        "title"
+      ],
+      "properties": {
+        "abilityname": {
+          "type": "string",
+          "example": "Orb of Deception"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ChampionStats": {
+      "type": "object",
+      "required": [
+        "champname",
+        "hp",
+        "armor",
+        "magicresist",
+        "attackrange",
+        "attackdamage",
+        "attackspeed"
+      ],
+      "properties": {
+        "champname": {
+          "type": "string",
+          "example": "Ahri"
+        },
+        "hp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "armor": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "magicresist": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackrange": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackdamage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attackspeed": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "WrapperNull": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "status": {
+          "type": "string",
+          "example": "OK"
+        },
+        "message": {
+          "type": "string",
+          "example": "Successful operation"
+        },
+        "response": {
+          "type": "object",
+          "example": null
+        }
+      }
+    }
+  }
+}
