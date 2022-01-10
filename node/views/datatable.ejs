@@ -77,6 +77,14 @@
                         <img src="../images/csv.png" alt="csv"
                             style="display: block; margin-top:16px; width:40px; margin-left:40px; margin-right: 15px; margin-bottom: 5px;"></a>
                 </li>
+                <% if (auth == false) { %>
+                    <li class="menu__group"><a href="/login" class="menu__link r-link text-underlined">Login</a></li>
+                  <% } %>
+                  <% if (auth == true) { %>
+                    <li class="menu__group"><a href="/profile" class="menu__link r-link text-underlined" >Profile</a></li>
+                    <li class="menu__group"><a href="/refresh" class="menu__link r-link text-underlined">Refresh copies</a></li>
+                    <li class="menu__group"><a href="/logout" class="menu__link r-link text-underlined">Logout</a></li>
+                <% } %>
             </ul>
         </nav>
     </div>

@@ -17,7 +17,9 @@ router.get('/', async function (req, res, next) {
     champs = await pool.query("SELECT champName FROM champions ORDER BY champName");
 
     res.render('index', {
+        auth:res.locals.isAuthenticated,
         champs: champs.rows,
+
     });
 });
 

@@ -121,11 +121,25 @@ module.exports = {
 
     let champs = await pool.query("SELECT champid,champName,title,lore,hp,armor,magicResist,attackRange,attackDamage,attackSpeed FROM champions WHERE champid = $1", [parseInt(id.rows[0].champid)]);
 
+
+    let context = {
+      "@context" : {
+        "champName": "https://schema.org/name",
+        "hp": "https://schema.org/characterAttribute",
+        "armor": "https://schema.org/characterAttribute",
+        "magicResist": "https://schema.org/characterAttribute",
+        "attackRange": "https://schema.org/characterAttribute",
+        "attackDamage": "https://schema.org/characterAttribute",
+        "attackSpeed": "https://schema.org/characterAttribute",
+      }
+    }
+    let champ = Object.assign(champs.rows[0], context);
+
     let status = '200';
     let wrapper = {
         status:status,
         message:"Successful operation",
-        response:champs.rows
+        response:champ
     };
       
 
@@ -293,12 +307,24 @@ module.exports = {
     };  
     }
 
+    let context = {
+      "@context" : {
+        "champName": "https://schema.org/name",
+        "hp": "https://schema.org/characterAttribute",
+        "armor": "https://schema.org/characterAttribute",
+        "magicResist": "https://schema.org/characterAttribute",
+        "attackRange": "https://schema.org/characterAttribute",
+        "attackDamage": "https://schema.org/characterAttribute",
+        "attackSpeed": "https://schema.org/characterAttribute",
+      }
+    }
+    let champ = Object.assign(champs.rows[0], context);
 
     let status = '200';
     let wrapper = {
         status:status,
         message:"Successful operation",
-        response:champs.rows[0]
+        response:champ
     };
       
 

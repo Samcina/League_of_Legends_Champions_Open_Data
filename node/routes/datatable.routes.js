@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.get('/', function (req, res, next) {
     res.render('datatable', {
+        auth:res.locals.isAuthenticated,
     });
 });
 

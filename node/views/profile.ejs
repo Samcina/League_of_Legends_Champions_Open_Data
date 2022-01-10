@@ -188,6 +188,37 @@
       font-weight: bold;
       color: #555;
     }
+
+    .main {
+    margin-top: 2%;
+    margin-left: 29%;
+    font-size: 28px;
+    padding: 0 10px;
+    width: 58%;
+}
+
+.main h2 {
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.main .card {
+    background-color: #fff;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 50px;
+}
+
+.main .card table {
+    border: none;
+    font-size: 16px;
+    height: 180px;
+    width: 80%;
+}
   </style>
 
 
@@ -219,7 +250,7 @@
           <li class="menu__group"><a href="/login" class="menu__link r-link text-underlined">Login</a></li>
         <% } %>
         <% if (auth == true) { %>
-          <li class="menu__group"><a href="/profile" class="menu__link r-link text-underlined" >Profile</a></li>
+          <li class="menu__group"><a href="/profile" class="menu__link r-link text-underlined">Profile</a></li>
           <li class="menu__group"><a href="/refresh" class="menu__link r-link text-underlined">Refresh copies</a></li>
           <li class="menu__group"><a href="/logout" class="menu__link r-link text-underlined">Logout</a></li>
         <% } %>
@@ -227,103 +258,34 @@
     </nav>
   </div>
 
-
-  <h1 class="retroshadow">
-    League of Legends Open Data
-  </h1>
-
-  <div class="list">
-    <ul style="list-style-type:none;">
-      <div style="display: flex; width: 800px;">
-        <li><a>Title: League of Legends Champions Open Data</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Keywords: league of legends, champions</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Creator: Luka Samac</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Language: English</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>License: Creative Commons Zero v1.0 Universal</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Version: 2.0</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Creation date: 1/11/2021</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Last modification: 16/11/2021</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a>Game: League of Legends</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a href="https://www.leagueoflegends.com/">Game URL: https://www.leagueoflegends.com/</a></li>
-      </div>
-      <div style="display: flex; width: 800px;">
-        <li><a href="https://github.com/Samcina/League_of_Legends_Champions_Open_Data">GitHub URL:
-            https://github.com/Samcina/League_of_Legends_Champions_Open_Data</a></li>
-      </div>
-    </ul>
-  </div>
-
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th style="width: 200px;">Attribute</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Name</td>
-        <td>Name of the champion</td>
-      </tr>
-      <tr>
-        <td>Title</td>
-        <td>Title of the said champion</td>
-      </tr>
-      <tr>
-        <td>Lore</td>
-        <td>Lore related to the champion</td>
-      </tr>
-      <tr>
-        <td>Hp, Armor, Magic Resist, Attack Range, Attack Damage, Attack Speed</td>
-        <td>In-game stats of the champion</td>
-      </tr>
-      <tr>
-        <td>Abilities</td>
-        <td>The list of the 4 abilities that the champion has</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-  <h1 class="retroshadow">
-    League of Legends Champions
-  </h1>
-
-
-  <ul class="flex-container">
-
-
-    <% for (let champ of champs) { %>
-      <li class="flex-item">
-        <img src="http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/<%= champ.champname %>.png"
-          style="height: 100px;width: 100px;" />
-        <p style="margin-top: 0;">
-          <%= champ.champname %>
-        </p>
-      </li>
-      <% } %>
-
-  </ul>
-
-
+  <div class="main">
+    <h2>IDENTITY</h2>
+    <div class="card">
+        <div class="card-body">
+            <i class="fa fa-pen fa-xs edit"></i>
+            <table>
+                <tbody>
+                    <tr>
+                    <img src=<%= user.picture %> alt="" width="100" height="100">
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td><%= user.name %></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td><%= user.email %></td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>:</td>
+                        <td><%= user.nickname %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </body>
